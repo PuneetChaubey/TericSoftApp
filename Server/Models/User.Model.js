@@ -8,7 +8,7 @@ const UserSchema = new mongoose.Schema({
   age: { type: String, isRequired: true },
 });
 
-const UserModel = mongoose.model("user-signup-cred", UserSchema);
+const UserModel = mongoose.model("signup-cred", UserSchema);
 
 
 module.exports = UserModel;

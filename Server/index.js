@@ -1,8 +1,13 @@
 const express = require("express");
-const app = express();
-const UserModel = 
+const connection = require("./Config/config.js");
+const userController = require("./Controller/user.controller.js");
 
- app.use(express.json());
+const app = express();
+
+app.use(express.json());
+ 
+app.use("/user", userController);
+
 
 
 app.get("/",(req, res) => {
@@ -13,6 +18,12 @@ app.get("/",(req, res) => {
 
 
 
-app.listen(5000,() => {
-    console.log("app  started on port 5000");
-})
+app.listen(process.env.PORT, async () => {
+  try {
+    await connection;
+    console.log("connection to Db established successfully");
+  } catch {
+    console.log("some error occured during connecting to DB");
+  }
+  console.log(`server started at port ${process.env.PORT}`);
+});
